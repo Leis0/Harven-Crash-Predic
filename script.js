@@ -229,13 +229,11 @@ generateBtn.addEventListener("click",()=>{
 });
 
 // =========================
-// Première valeur
+// État initial
 // =========================
 
-const first = randomMultiplier();
+multiplier.textContent = "0.00x";
 
-multiplier.textContent = first.toFixed(2)+"x";
-
-addHistory(first);
-
-updateStats(first);
+average.textContent = "0.00x";
+highest.textContent = "0.00x";
+count.textContent = "0";
