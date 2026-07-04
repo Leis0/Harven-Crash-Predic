@@ -101,7 +101,7 @@ function randomMultiplier() {
 
 function animateValue(target){
 
-    let start = 1;
+    let start = 0;
 
     const duration = 1200;
 
