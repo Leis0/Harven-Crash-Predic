@@ -1,0 +1,337 @@
+/* ==========================
+   CRASH SIMULATOR STYLE
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#080b15;
+    color:#fff;
+    overflow-x:hidden;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+/* ==========================
+   Background
+========================== */
+
+.background{
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.circle{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    animation:float 10s infinite alternate ease-in-out;
+}
+
+.c1{
+    width:250px;
+    height:250px;
+    background:#ff3d3d;
+    top:-80px;
+    left:-70px;
+}
+
+.c2{
+    width:220px;
+    height:220px;
+    background:#00c3ff;
+    right:-60px;
+    bottom:0;
+}
+
+.c3{
+    width:180px;
+    height:180px;
+    background:#7b2fff;
+    left:45%;
+    bottom:-60px;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(0) scale(1);
+    }
+    to{
+        transform:translateY(40px) scale(1.2);
+    }
+}
+
+/* ==========================
+   Container
+========================== */
+
+.container{
+    width:95%;
+    max-width:420px;
+    padding:20px;
+}
+
+/* ==========================
+   Logo
+========================== */
+
+.logo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo h1{
+    font-size:34px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#00d8ff;
+}
+
+.logo p{
+    color:#aaa;
+    margin-top:8px;
+}
+
+/* ==========================
+   Card
+========================== */
+
+.card{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:25px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 0 30px rgba(0,0,0,.4);
+}
+
+.label{
+    color:#aaa;
+    font-size:15px;
+}
+
+.multiplier{
+    margin:20px 0;
+    font-size:70px;
+    font-weight:bold;
+    color:#00ff84;
+    text-shadow:0 0 20px #00ff84;
+    transition:.4s;
+}
+
+/* ==========================
+   Button
+========================== */
+
+button{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    border-radius:15px;
+    padding:16px;
+    font-size:18px;
+    font-weight:bold;
+    background:linear-gradient(90deg,#ff2b5c,#ff5b2b);
+    color:white;
+    transition:.25s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 20px rgba(255,80,80,.6);
+}
+
+button:active{
+    transform:scale(.98);
+}
+
+/* ==========================
+   Loading
+========================== */
+
+.loading{
+    margin-top:18px;
+    color:#00d8ff;
+    animation:pulse 1s infinite;
+}
+
+.hidden{
+    display:none;
+}
+
+@keyframes pulse{
+
+    0%{
+        opacity:.2;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:.2;
+    }
+
+}
+
+/* ==========================
+   Stats
+========================== */
+
+.stats{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.stat{
+    background:rgba(255,255,255,.05);
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.stat span{
+    color:#aaa;
+    font-size:13px;
+}
+
+.stat h3{
+    margin-top:8px;
+    color:#00ff84;
+}
+
+/* ==========================
+   History
+========================== */
+
+.history-card{
+    margin-top:25px;
+    background:rgba(255,255,255,.05);
+    padding:20px;
+    border-radius:20px;
+}
+
+.history-card h2{
+    margin-bottom:15px;
+    text-align:center;
+}
+
+.history{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.history div{
+
+    flex:1 1 calc(25% - 10px);
+
+    text-align:center;
+
+    padding:10px;
+
+    border-radius:12px;
+
+    background:#1c2236;
+
+    animation:pop .35s;
+
+    font-weight:600;
+
+}
+
+.red{
+    color:#ff5757;
+}
+
+.orange{
+    color:#ffbe3b;
+}
+
+.green{
+    color:#2dff8f;
+}
+
+@keyframes pop{
+
+    from{
+
+        transform:scale(.4);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+/* ==========================
+   Footer
+========================== */
+
+footer{
+
+    position:fixed;
+
+    bottom:12px;
+
+    width:100%;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:12px;
+
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:420px){
+
+.multiplier{
+
+font-size:58px;
+
+}
+
+button{
+
+font-size:17px;
+
+}
+
+.stat h3{
+
+font-size:17px;
+
+}
+
+}
