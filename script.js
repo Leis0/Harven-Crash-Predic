@@ -19,35 +19,82 @@ let maxValue = 0;
 // =========================
 // Génération aléatoire
 // =========================
+    // ===============================
+// Cycle de 10 générations
+// ===============================
+
+let cycle = [];
+
+function createCycle() {
+
+    cycle = [
+        "low",
+        "low",
+        "low",
+        "low",
+
+        "two",
+        "two",
+        "two",
+
+        "mid",
+        "mid",
+
+        "high"
+    ];
+
+    // Mélange du tableau (Fisher-Yates)
+    for (let i = cycle.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [cycle[i], cycle[j]] = [cycle[j], cycle[i]];
+
+    }
+
+}
+
+createCycle();
+
 function randomMultiplier() {
 
-    const r = Math.random();
+    if (cycle.length === 0) {
+        createCycle();
+    }
+
+    const type = cycle.pop();
+
     let value;
 
-    // 80 % -> entre 0.00 et 3.50
-    if (r < 0.80) {
+    switch (type) {
 
-        value = Math.random() * 3.5;
+        // 0.00 à 1.99
+        case "low":
+            value = Math.random() * 1.99;
+            break;
 
-    }
+        // 2.00 à 2.99
+        case "two":
+            value = 2 + Math.random() * 0.99;
+            break;
 
-    // 12 % -> entre 3.51 et 4.99
-    else if (r < 0.92) {
+        // 3.00 à 4.99
+        case "mid":
+            value = 3 + Math.random() * 1.99;
+            break;
 
-        value = 3.51 + Math.random() * 1.48;
-
-    }
-
-    // 8 % -> entre 5.00 et 10.00
-    else {
-
-        value = 5 + Math.random() * 5;
+        // 5.00 à 10.00
+        case "high":
+            value = 5 + Math.random() * 5;
+            break;
 
     }
 
     return Number(value.toFixed(2));
 
 }
+
+      
 // =========================
 // Animation compteur
 // =========================
