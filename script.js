@@ -16,11 +16,43 @@ const count = document.getElementById("count");
 let values = [];
 let maxValue = 0;
 
+function getValueFromColor(color) {
+
+    if (color === "red") {
+        return 1.00 + Math.random() * 1.49; // 1.00 - 2.49
+    }
+
+    if (color === "orange") {
+        return 2.50 + Math.random() * 1.49; // 2.50 - 3.99
+    }
+
+    if (color === "yellow") {
+        return 4.00 + Math.random() * 1.99; // 4.00 - 5.99
+    }
+
+    if (color === "green") {
+        return 6.00 + Math.random() * 1.99; // 6.00 - 7.99
+    }
+
+    if (color === "purple") {
+        return 8.00 + Math.random() * 2.00; // 8.00 - 10.00
+    }
+
+    return 1.00;
+}
+
 // ===============================
 // Cycle de 100 générations
 // ===============================
 
-let cycle = [];
+let cycle = ["red","red","red","red",
+    "yellow","yellow",
+    "red",
+    "orange","orange","orange",
+    "red","orange","red","red",
+    "orange","orange",
+    "purple",
+    "red","red","red","red","red"];
 
 function createCycle() {
 
@@ -61,45 +93,15 @@ let lowStreak = 0;
 
 function randomMultiplier() {
 
-    const r = Math.random();
-
-    let value;
-
-    // détecte les petits multiplicateurs
-    const temp = Math.random();
-
-    if (temp < 0.7) {
-        value = 1 + Math.random() * 1.5; // 1.00 - 2.5
-    } else {
-        value = 2.5 + Math.random() * 7.5; // 2.5 - 10
+    if (cycle.length === 0) {
+        // si cycle fini → regen simple
+        return 1.00 + Math.random() * 9.00;
     }
 
-    value = Number(value.toFixed(2));
+    const color = cycle.shift();
+    const value = getValueFromColor(color);
 
-    // gestion du streak
-    if (value < 2) {
-        lowStreak++;
-    } else {
-        lowStreak = 0;
-    }
-
-    // après 4 faibles résultats consécutifs
-    if (lowStreak >= 4) {
-
-        const boost = Math.random();
-
-        if (boost < 0.7) {
-            value = 2 + Math.random() * 3; // 2 - 5
-        } else {
-            value = 6 + Math.random() * 4; // 6 - 10
-        }
-
-        value = Number(value.toFixed(2));
-
-        lowStreak = 0; // reset cycle
-    }
-
-    return value;
+    return Number(value.toFixed(2));
 }
 // =========================
 // Animation compteur
