@@ -19,39 +19,44 @@ let maxValue = 0;
 // =========================
 // Génération aléatoire
 // =========================
-    // ===============================
-// Cycle de 10 générations
+
+// ===============================
+// Cycle de 100 générations
 // ===============================
 
 let cycle = [];
 
 function createCycle() {
 
-    cycle = [
-        "low",
-        "low",
-        "low",
-        "low",
+    cycle = [];
 
-        "two",
-        "two",
-        "two",
+    // 70 %
+    for (let i = 0; i < 70; i++) {
+        cycle.push("low");
+    }
 
-        "mid",
-        "mid",
+    // 20 %
+    for (let i = 0; i < 20; i++) {
+        cycle.push("medium");
+    }
 
-        "high"
-    ];
+    // 7 %
+    for (let i = 0; i < 7; i++) {
+        cycle.push("high");
+    }
 
-    // Mélange du tableau (Fisher-Yates)
+    // 3 %
+    for (let i = 0; i < 3; i++) {
+        cycle.push("veryHigh");
+    }
+
+    // Mélange Fisher-Yates
     for (let i = cycle.length - 1; i > 0; i--) {
 
         const j = Math.floor(Math.random() * (i + 1));
 
         [cycle[i], cycle[j]] = [cycle[j], cycle[i]];
-
     }
-
 }
 
 createCycle();
@@ -68,32 +73,29 @@ function randomMultiplier() {
 
     switch (type) {
 
-        // 0.00 à 1.99
+        // 70 % : 1.00 -> 1.99
         case "low":
-            value = Math.random() * 1.99;
+            value = 1 + Math.random() * 0.99;
             break;
 
-        // 2.00 à 2.99
-        case "two":
-            value = 2 + Math.random() * 0.99;
+        // 20 % : 2.00 -> 3.00
+        case "medium":
+            value = 2 + Math.random();
             break;
 
-        // 3.00 à 4.99
-        case "mid":
-            value = 3 + Math.random() * 1.99;
-            break;
-
-        // 5.00 à 10.00
+        // 7 % : 3.00 -> 5.00
         case "high":
-            value = 5 + Math.random() * 5;
+            value = 3 + Math.random() * 2;
             break;
 
+        // 3 % : 5.10 -> 6.00
+        case "veryHigh":
+            value = 5.10 + Math.random() * 0.90;
+            break;
     }
 
     return Number(value.toFixed(2));
-
 }
-
       
 // =========================
 // Animation compteur
@@ -135,19 +137,14 @@ function animateValue(target){
 function getColor(value){
 
     if(value < 2){
-
         return "red";
-
     }
 
-    if(value < 10){
-
+    if(value < 5.1){
         return "orange";
-
     }
 
     return "green";
-
 }
 
 // =========================
