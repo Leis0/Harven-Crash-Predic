@@ -16,10 +16,6 @@ const count = document.getElementById("count");
 let values = [];
 let maxValue = 0;
 
-// =========================
-// Génération aléatoire
-// =========================
-
 // ===============================
 // Cycle de 100 générations
 // ===============================
@@ -63,40 +59,35 @@ createCycle();
 
 function randomMultiplier() {
 
-    if (cycle.length === 0) {
-        createCycle();
+    const r = Math.random();
+
+    let min, max;
+
+    // valeurs faibles (très fréquentes)
+    if (r < 0.70) {
+        min = 1.00;
+        max = 2.50;
+
+    // valeurs moyennes
+    } else if (r < 0.90) {
+        min = 2.50;
+        max = 4.00;
+
+    // valeurs hautes rares
+    } else if (r < 0.97) {
+        min = 4.00;
+        max = 6.00;
+
+    // très grosses valeurs très rares
+    } else {
+        min = 6.00;
+        max = 10.00;
     }
 
-    const type = cycle.pop();
-
-    let value;
-
-    switch (type) {
-
-        // 70 % : 1.00 -> 1.99
-        case "low":
-            value = 1 + Math.random() * 0.99;
-            break;
-
-        // 20 % : 2.00 -> 3.00
-        case "medium":
-            value = 2 + Math.random();
-            break;
-
-        // 7 % : 3.00 -> 5.00
-        case "high":
-            value = 3 + Math.random() * 2;
-            break;
-
-        // 3 % : 5.10 -> 6.00
-        case "veryHigh":
-            value = 5.10 + Math.random() * 0.90;
-            break;
-    }
+    const value = min + Math.random() * (max - min);
 
     return Number(value.toFixed(2));
 }
-      
 // =========================
 // Animation compteur
 // =========================
@@ -136,15 +127,24 @@ function animateValue(target){
 
 function getColor(value){
 
-    if(value < 2){
-        return "red";
+    if (value < 2.5) {
+        return "red";      // petits multiplicateurs (très fréquents)
     }
 
-    if(value < 5.1){
-        return "orange";
+    if (value < 4) {
+        return "orange";   // moyens
     }
 
-    return "green";
+    if (value < 6) {
+        return "yellow";   // bons gains
+
+    }
+
+    if (value < 8) {
+        return "green";    // gros gains rares
+    }
+
+    return "purple";       // très grosses valeurs (très rares)
 }
 
 // =========================
